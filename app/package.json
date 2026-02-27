@@ -1,0 +1,25 @@
+{
+  "name": "nithin-task-11-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi application for Task 11 with RDS PostgreSQL",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.15.0",
+    "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/plugin-i18n": "4.15.0",
+    "pg": "^8.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "nithin-task-11-unique-id"
+  }
+}

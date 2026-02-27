@@ -1,0 +1,44 @@
+{
+    "family": "nithin-task-11-task",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::811738710312:role/ecs_fargate_taskRole",
+    "taskRoleArn": "arn:aws:iam::811738710312:role/ecs_fargate_taskRole",
+    "containerDefinitions": [
+        {
+            "name": "nithin-task-11-container",
+            "image": "<IMAGE1_NAME>",
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                }
+            ],
+            "environment": [
+                { "name": "DATABASE_CLIENT", "value": "postgres" },
+                { "name": "DATABASE_HOST", "value": "nithin-task-11-db.cibg8qw2kouc.us-east-1.rds.amazonaws.com" },
+                { "name": "DATABASE_PORT", "value": "5432" },
+                { "name": "DATABASE_NAME", "value": "strapi" },
+                { "name": "DATABASE_USERNAME", "value": "nithinadmin" },
+                { "name": "DATABASE_PASSWORD", "value": "SecurePassword123!" },
+                { "name": "DATABASE_SSL", "value": "true" },
+                { "name": "DATABASE_SSL_REJECT_UNAUTHORIZED", "value": "false" },
+                { "name": "NODE_ENV", "value": "production" }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/nithin-strapi-final-v13",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
