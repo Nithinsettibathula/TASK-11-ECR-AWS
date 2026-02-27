@@ -1,33 +1,30 @@
-# STEP 1: Build Stage
-FROM node:18-alpine AS build
+# Use Node 18 Alpine for a small, secure image
+FROM node:18-alpine
 
-# Fix memory issues and provide dummy build secrets
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+# Install build dependencies for Strapi
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev
+
+# Set environment
 ENV NODE_ENV=production
-ENV APP_KEYS="testKey1,testKey2"
-ENV API_TOKEN_SALT="testSalt"
-ENV ADMIN_JWT_SECRET="testAdminSecret"
-ENV JWT_SECRET="testJwtSecret"
 
-RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev nasm bash vips-dev postgresql-client libpq-dev
-
-WORKDIR /opt/app
+# Install dependencies
+WORKDIR /opt/
 COPY package.json package-lock.json ./
+RUN npm install --only=production
 
-# 'npm ci' is better for Docker than 'npm install'
-RUN npm ci
+# --- CRITICAL FIX: Explicitly install the PostgreSQL driver ---
+RUN npm install pg --save
+# --------------------------------------------------------------
 
+ENV PATH /opt/node_modules/.bin:$PATH
+
+# Copy application code and build
+WORKDIR /opt/app
 COPY . .
-# Force a clean build
 RUN npm run build
 
-# STEP 2: Production Stage
-FROM node:18-alpine
-RUN apk add --no-cache vips-dev libpq
-WORKDIR /opt/app
+# Expose the Strapi port
+EXPOSE 1337
 
-# Copy only the necessary files from build stage
-COPY --from=build /opt/app ./
-
-EXPOSE 80
+# Start the application
 CMD ["npm", "run", "start"]
