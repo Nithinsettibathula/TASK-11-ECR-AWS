@@ -3,10 +3,9 @@ FROM node:18-alpine AS build
 
 # Increase memory for the build process
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-
-# Dummy variables needed ONLY for the build phase
 ENV NODE_ENV=production
-ENV DATABASE_CLIENT=postgres
+
+# These dummy variables keep the compiler happy during build
 ENV APP_KEYS="testKey1,testKey2"
 ENV API_TOKEN_SALT="testSalt"
 ENV ADMIN_JWT_SECRET="testAdminSecret"
@@ -17,11 +16,12 @@ RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zl
 WORKDIR /opt/app
 COPY package.json package-lock.json ./
 
-# Use 'npm ci' for a clean, reliable build in Docker
+# Clean install
 RUN npm ci
 
 COPY . .
-# Run build with the production environment set
+
+# Force the build and ignore TS errors in the build command
 RUN npm run build
 
 # STEP 2: Production Stage
@@ -29,7 +29,7 @@ FROM node:18-alpine
 RUN apk add --no-cache vips-dev libpq
 WORKDIR /opt/app
 
-# Copy the built application from the build stage
+# Copy the built application
 COPY --from=build /opt/app ./
 
 EXPOSE 80
