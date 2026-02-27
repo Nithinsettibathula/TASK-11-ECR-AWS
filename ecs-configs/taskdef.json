@@ -16,6 +16,7 @@
                 }
             ],
             "environment": [
+                { "name": "NODE_ENV", "value": "production" },
                 { "name": "DATABASE_CLIENT", "value": "postgres" },
                 { "name": "DATABASE_HOST", "value": "nithin-task-11-db.cibg8qw2kouc.us-east-1.rds.amazonaws.com" },
                 { "name": "DATABASE_PORT", "value": "5432" },
@@ -23,8 +24,7 @@
                 { "name": "DATABASE_USERNAME", "value": "nithinadmin" },
                 { "name": "DATABASE_PASSWORD", "value": "SecurePassword123!" },
                 { "name": "DATABASE_SSL", "value": "true" },
-                { "name": "DATABASE_SSL_REJECT_UNAUTHORIZED", "value": "false" },
-                { "name": "NODE_ENV", "value": "production" }
+                { "name": "DATABASE_SSL_REJECT_UNAUTHORIZED", "value": "false" }
             ],
             "logConfiguration": {
                 "logDriver": "awslogs",

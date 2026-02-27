@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"codedeploy","Source":"./modules/codedeploy","Dir":"modules/codedeploy"},{"Key":"ecr","Source":"./modules/ecr","Dir":"modules/ecr"},{"Key":"ecs","Source":"./modules/ecs","Dir":"modules/ecs"},{"Key":"rds","Source":"./modules/rds","Dir":"modules/rds"}]}

@@ -1,42 +1,61 @@
-# TASK-11-ECR-AWS
+# 🚀 Getting started with Strapi
 
-This repository contains the components for an example CI/CD pipeline that builds a Docker image, pushes it to Amazon ECR, and deploys it to ECS using Fargate.
+Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
-## Structure
+### `develop`
+
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
 ```
-TASK-11-ECR-AWS/
-├── .github/                 # GitHub Actions workflows
-│   └── workflows/
-│       └── deploy.yml       # CI/CD pipeline definition
-├── app/                    # Module 1: Application Code
-│   ├── src/                # Source code for the sample Node.js app
-│   ├── package.json        # Dependencies
-│   └── Dockerfile          # Builds the container image
-├── ecs-configs/            # Deployment configs (taskdef/appspec)
-├── terraform/              # Module 3: Infrastructure as Code
-│   ├── main.tf             # Root that calls modules
-│   ├── variables.tf        # Input variables for terraform
-│   ├── outputs.tf          # Outputs from root
-│   └── modules/            # Modular subdirectories
-│       ├── ecr/            # Creates nithin-task-11-ecr
-│       ├── ecs/            # Creates ECS cluster & service
-│       └── codedeploy/     # CodeDeploy app/group
-└── README.md               # This documentation
+npm run develop
+# or
+yarn develop
 ```
 
-## Usage
+### `start`
 
-1. **Terraform**
-   - Initialize: `terraform init`
-   - Apply: `terraform apply` (creates ECR repository and ECS cluster)
+Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
 
-2. **Build and deploy**
-   - Push code to `main` branch with the necessary GitHub secrets set:
-     - `AWS_ACCESS_KEY_ID`
-     - `AWS_SECRET_ACCESS_KEY`
-     - Optional environment variables for ECR registry/repository
-   - GitHub Actions will build the Docker image, push to ECR, and (optionally) update ECS.
+```
+npm run start
+# or
+yarn start
+```
 
-3. **Local testing**
-   - Inside `app/`, run `npm install && npm start` to start the sample server.
+### `build`
+
+Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
+
+```
+npm run build
+# or
+yarn build
+```
+
+## ⚙️ Deployment
+
+Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
+
+```
+yarn strapi deploy
+```
+
+## 📚 Learn more
+
+- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
+- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
+- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
+- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
+- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+
+Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+
+## ✨ Community
+
+- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
+- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
+- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+
+---
+
+<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
