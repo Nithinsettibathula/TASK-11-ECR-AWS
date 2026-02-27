@@ -6,29 +6,12 @@
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": false,
-    "incremental": true,
     "outDir": "dist",
     "rootDir": ".",
-    "baseUrl": ".",
     "noEmitOnError": false
   },
-  "include": [
-    "./",
-    "src/**/*.ts",
-    "src/**/*.js",
-    "config/**/*.ts",
-    "config/**/*.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    ".cache"
-  ]
+  "exclude": ["node_modules", "build", "dist", ".cache"]
 }
