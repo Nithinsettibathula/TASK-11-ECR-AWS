@@ -1,44 +1,34 @@
 {
   "compilerOptions": {
+    "lib": ["es2019", "es2020", "dom"],
     "module": "CommonJS",
-    "moduleResolution": "Node",
-    "lib": ["ES2020"],
     "target": "ES2019",
     "strict": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "esModuleInterop": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmitOnError": true,
-    "noImplicitThis": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "incremental": true,
     "outDir": "dist",
-    "rootDir": "."
+    "rootDir": ".",
+    "baseUrl": ".",
+    "noEmitOnError": false
   },
   "include": [
-    // Include root files
     "./",
-    // Include all ts files
-    "./**/*.ts",
-    // Include all js files
-    "./**/*.js",
-    // Force the JSON files in the src folder to be included
-    "src/**/*.json"
+    "src/**/*.ts",
+    "src/**/*.js",
+    "config/**/*.ts",
+    "config/**/*.js"
   ],
-
   "exclude": [
-    "node_modules/",
-    "build/",
-    "dist/",
-    ".cache/",
-    ".tmp/",
-    ".strapi/",
-
-    // Do not include admin files in the server compilation
-    "src/admin/",
-    // Do not include test files
-    "**/*.test.*",
-    // Do not include plugins in the server compilation
-    "src/plugins/**"
+    "node_modules",
+    "build",
+    "dist",
+    ".cache"
   ]
 }
